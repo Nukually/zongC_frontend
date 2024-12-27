@@ -1,6 +1,7 @@
 using System;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -72,27 +73,42 @@ public class TcpClientScript : MonoBehaviour
             Debug.LogError($"连接服务器失败: {e.Message}");
         }
     }
+    public bool IsValidString(string input)
+    {
+        // 定义正则表达式："^\\d+ \\d+$"
+        // ^: 字符串的开头
+        // \\d+: 至少一个数字
+        // : 一个空格
+        // \\d+: 至少一个数字
+        // $: 字符串的结尾
+        string pattern = @"^\d+ \d+$";
 
+        // 使用正则表达式验证
+        return Regex.IsMatch(input, pattern);
+    }
     public void MySendMessage(string message)
     {
-        SendMessageToServer(message);//这一步给服务器的是一个坐标
-        string[] parts = message.Split(' '); // 使用空格分割字符串
-        int number1 = 0;
-        int number2 = 0;
-        // 解析成两个整数
-        if (parts.Length == 2)
+        if (IsValidString(message))
         {
-            number1 = int.Parse(parts[0]); // 将第一个部分转为int
-            number2 = int.Parse(parts[1]); // 将第二个部分转为int
+            SendMessageToServer(message);//这一步给服务器的是一个坐标
+            string[] parts = message.Split(' '); // 使用空格分割字符串
+            int number1 = 0;
+            int number2 = 0;
+            // 解析成两个整数
+            if (parts.Length == 2)
+            {
+                number1 = int.Parse(parts[0]); // 将第一个部分转为int
+                number2 = int.Parse(parts[1]); // 将第二个部分转为int
 
-            Debug.Log($"Number 1: {number1}, Number 2: {number2}");
+                Debug.Log($"Number 1: {number1}, Number 2: {number2}");
+            }
+            else
+            {
+                Debug.LogError("输入的字符串格式不正确！");
+            }
+            //高亮 number1 number2
+            HighlightTile(number1,number2);
         }
-        else
-        {
-            Debug.LogError("输入的字符串格式不正确！");
-        }
-        //高亮 number1 number2
-        HighlightTile(number1,number2);
     }
     public async void SendMessageToServer(string message)
     {
