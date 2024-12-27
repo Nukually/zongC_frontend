@@ -26,6 +26,7 @@
 # Visual Studio cache directory
 .vs/
 .idea/
+1/
 
 # Gradle cache directory
 .gradle/
