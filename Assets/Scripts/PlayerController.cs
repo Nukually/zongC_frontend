@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
         // 创建并应用特效材质
         Material trailEffectMaterial = new Material(Shader.Find("Custom/TrailEffectShader"));
         lineRenderer.material = trailEffectMaterial;
-        
+        // hello
     }
 
     public void UpdateRandomNumbers(int randomNumber1, int randomNumber2)
