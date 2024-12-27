@@ -484,7 +484,8 @@ MonoBehaviour:
   transforms: []
   isFreeMode: 0
   moveSpeed: 10
-  zoomSpeed: 1
+  zoomSpeed: 5
+  rotationSpeed: 5
 --- !u!1 &547997046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +1033,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.07324914
+        value: 0.053000726
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1906,7 +1907,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.065345764
+        value: 0.05016327
         inSlope: 0
         outSlope: 0
         tangentMode: 0
